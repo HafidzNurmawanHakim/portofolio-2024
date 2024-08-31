@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+   scroll-behavior: smooth;
+}
+
+@layer {
+   .custom-blur {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(11.5px);
+      -webkit-backdrop-filter: blur(11.5px);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+   }
+
+   .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 10px;
+      background: red;
+      transform-origin: 0%;
+      z-index: 30;
+   }
+
+   .dark-radial {
+      background: radial-gradient(circle, rgba(36, 38, 40, 1) 52%, rgba(11, 13, 15, 1) 100%);
+   }
+
+   .bg-grid {
+      --color: rgba(11, 13, 15, 0.3);
+      background-size: 55px 55px;
+      background-image: linear-gradient(
+            0deg,
+            transparent 24%,
+            var(--color) 25%,
+            var(--color) 26%,
+            transparent 27%,
+            transparent 74%,
+            var(--color) 75%,
+            var(--color) 76%,
+            transparent 77%,
+            transparent
+         ),
+         linear-gradient(
+            90deg,
+            transparent 24%,
+            var(--color) 25%,
+            var(--color) 26%,
+            transparent 27%,
+            transparent 74%,
+            var(--color) 75%,
+            var(--color) 76%,
+            transparent 77%,
+            transparent
+         );
+   }
+}
