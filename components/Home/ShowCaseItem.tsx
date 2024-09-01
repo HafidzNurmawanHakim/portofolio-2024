@@ -53,7 +53,7 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
    return (
       <div
          className={clsx(
-            "w-full flex flex-col  justify-center",
+            "w-full flex flex-col h-full pb-40 justify-center",
             rtl ? "md:flex-row-reverse" : "md:flex-row"
          )}
       >
@@ -67,8 +67,17 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
                   <div className="my-10">
                      <p className={clsx(fontMono.className, "text-left")}>{description}</p>
 
-                     <div className="flex mt-4">
-                        <label>Status: {status}</label>
+                     <div className="flex mt-4 items-center gap-4">
+                        <label>Status:</label>
+                        <Chip
+                           size="sm"
+                           color={
+                              status.toLowerCase().includes("development") ? "warning" : "success"
+                           }
+                           variant="flat"
+                        >
+                           {status}
+                        </Chip>
                      </div>
 
                      <div className="flex gap-4 flex-wrap mt-20">
@@ -93,14 +102,6 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
                      </div>
 
                      <div className="flex items-center gap-4 mt-10 justify-end">
-                        <Chip
-                           color={
-                              status.toLowerCase().includes("development") ? "warning" : "success"
-                           }
-                           variant="flat"
-                        >
-                           {status}
-                        </Chip>
                         {status.toLowerCase().includes("production") && (
                            <Button
                               color="primary"
@@ -115,10 +116,10 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
                         )}
                         {status.toLowerCase().includes("production") && !privateProject ? (
                            <Button
-                              className="w-40"
                               startContent={<GithubIcon />}
                               as={Link}
                               href={gitLink}
+                              target="_blank"
                            >
                               {privateProject ? "Private" : "Git"}
                            </Button>
@@ -138,7 +139,7 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
             </motion.div>
          </Slide>
          <Slide
-            className="relative mt-20 h-[960px] w-full"
+            className="relative mt-20 h-[960px] w-full pointer-events-none"
             delay={delay + 0.5}
             direction={rtl ? "right" : "left"}
          >
@@ -151,7 +152,7 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
                   src={imageUrl}
                   alt={title}
                   fill
-                  sizes="1920px"
+                  sizes="2560px"
                   className="rounded-2xl object-cover object-left"
                />
             </motion.div>

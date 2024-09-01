@@ -1,23 +1,38 @@
 import { motion, useInView, useAnimation } from "framer-motion";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 type SlideProps = {
    children: React.ReactNode;
    className?: string;
    delay?: number;
    direction?: "left" | "right" | "up" | "down";
+   triggerByButton?: boolean;
+   trigger?: boolean;
 };
 
-export default function Slide({ children, delay = 0, className, direction = "right" }: SlideProps) {
-   const ref = useRef(null);
+export default function Slide({
+   children,
+   delay = 0,
+   className,
+   direction = "right",
+   triggerByButton = false,
+   trigger,
+}: SlideProps) {
+   const ref = useRef<HTMLDivElement | null>(null);
    const isInView = useInView(ref, { once: true });
    const controls = useAnimation();
 
    useEffect(() => {
-      if (isInView) {
+      if (isInView && !triggerByButton) {
          controls.start("visible");
       }
-   }, [isInView, controls]);
+   }, [isInView, controls, triggerByButton]);
+
+   useEffect(() => {
+      if (triggerByButton && trigger) {
+         controls.start("visible");
+      }
+   }, [trigger, controls, triggerByButton]);
 
    const variants = {
       hidden: {
@@ -33,21 +48,23 @@ export default function Slide({ children, delay = 0, className, direction = "rig
    };
 
    return (
-      <motion.div
-         ref={ref}
-         variants={variants}
-         transition={{
-            type: "spring",
-            duration: 0.6,
-            damping: 8,
-            delay,
-            stiffness: 100,
-         }}
-         initial="hidden"
-         animate={controls}
-         className={className}
-      >
-         {children}
-      </motion.div>
+      <>
+         <motion.div
+            ref={ref}
+            variants={variants}
+            transition={{
+               type: "spring",
+               duration: 0.6,
+               damping: 8,
+               delay,
+               stiffness: 100,
+            }}
+            initial="hidden"
+            animate={controls}
+            className={className}
+         >
+            {children}
+         </motion.div>
+      </>
    );
 }

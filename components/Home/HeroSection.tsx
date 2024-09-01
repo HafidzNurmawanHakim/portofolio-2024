@@ -9,7 +9,7 @@ import { Button } from "@nextui-org/button";
 function HeroSection() {
    return (
       <Container className="">
-         <div className="absolute wave left-0 max-w-screen h-screen overflow-hidden bottom-0 top-0 left-0 right-0"></div>
+         <div className="absolute wave left-0 max-w-screen h-screen overflow-hidden bottom-0 top-0 right-0"></div>
          <div className="w-full text-start pl-32">
             <p className={clsx(fontFira.className, "text-xl  mr-10")}>
                <TypeAnimation
@@ -123,7 +123,7 @@ function HeroSection() {
                <h2 className={clsx("text-[3rem] font-semibold", fontSora.className)}>Developer</h2>
             </div>
          </div>
-         <div className="w-full flex items-center gap-10 mt-40 justify-center flex-col">
+         <div className="w-full flex items-center gap-10 mt-20 justify-center flex-col">
             <p className={clsx("text-xl", fontFira.className)}>Want to make me more stressed?</p>
             <Button size="lg" className="bg-[#30eee233] border-[#30eee2]" variant="bordered">
                Hire Me

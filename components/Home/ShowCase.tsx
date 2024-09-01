@@ -103,6 +103,45 @@ const ShowCaseItems = {
          },
       ],
    },
+   portofolio: {
+      title: "Hafidz-Portofolio",
+      description: `My latest portfolio is built using TypeScript, Next.js, Tailwind CSS and Next UI. The site was designed with a focus on performance and aesthetics, featuring smooth animations using Framer Motion for a more dynamic user experience. This project reflects my expertise in modern front-end development and includes a showcase of some of my best projects.`,
+      status: "Production",
+      privateProject: false,
+      gitLink: "https://github.com/HafidzNurmawanHakim/portofolio-2024",
+      webLink: "https://hafidznurmawan-dev.my.id",
+      imageProject: "/assets/images/hafidznurmawan.png",
+      techStack: [
+         {
+            image: "/assets/images/typescript.png",
+            desc: "Typescript",
+         },
+         {
+            image: "/assets/images/react.png",
+            desc: "React",
+         },
+         {
+            image: "assets/svg/next.svg",
+            desc: "Next",
+         },
+         {
+            image: "/assets/images/css.png",
+            desc: "CSS",
+         },
+         {
+            image: "assets/svg/sass.svg",
+            desc: "Sass",
+         },
+         {
+            image: "/assets/images/tailwind.png",
+            desc: "Tailwind",
+         },
+         {
+            image: "/assets/svg/framer-motion.svg",
+            desc: "Framer Motion",
+         },
+      ],
+   },
 };
 
 function ShowCase() {
@@ -148,6 +187,20 @@ function ShowCase() {
                gitLink={ShowCaseItems.nevermind.gitLink}
                webLink={ShowCaseItems.nevermind.webLink}
                privateProject={ShowCaseItems.nevermind.privateProject}
+            />
+            <ShowCaseItem
+               imageUrl={ShowCaseItems.portofolio.imageProject}
+               status={ShowCaseItems.portofolio.status}
+               title={ShowCaseItems.portofolio.title}
+               description={ShowCaseItems.portofolio.description}
+               techStack={ShowCaseItems.portofolio.techStack}
+               scrollYProgress={scrollYProgress}
+               outputRangeLeft={["50%", "0%"]}
+               outputRangeRight={["0%", "80%"]}
+               inputRange={[1, 0]}
+               gitLink={ShowCaseItems.portofolio.gitLink}
+               webLink={ShowCaseItems.portofolio.webLink}
+               privateProject={ShowCaseItems.portofolio.privateProject}
             />
          </div>
       </Container>
