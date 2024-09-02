@@ -60,10 +60,12 @@ function CardAbout1() {
             }}
          />
          <div className="absolute z-20 w-full h-full top-0 left-0  bg-grid pointer-events-none"></div>
-         <CardHeader className={clsx(fontFira.className, "justify-center text-3xl py-6")}>
+         <CardHeader
+            className={clsx(fontFira.className, "justify-center text-xl lg:text-3xl py-6")}
+         >
             Me
          </CardHeader>
-         <CardBody className={clsx(fontMono.className, "px-10  text-gray-400")}>
+         <CardBody className={clsx(fontMono.className, "px-10 text-sm lg:text-base text-gray-400")}>
             Im passionate full-stack developer with 4 years of experience. From a young age, im love
             for coding and design has driven him to create innovative and visually stunning
             projects. With a sharp eye for detail, he consistently delivers exceptional and

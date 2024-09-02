@@ -7,6 +7,7 @@ import React, {
    ReactNode,
    createContext,
    useContext,
+   useEffect,
 } from "react";
 import ResizeObserver from "resize-observer-polyfill";
 import { useScroll, useTransform, useSpring, motion, MotionValue } from "framer-motion";
@@ -22,35 +23,48 @@ interface SmoothScrollProviderProps {
 }
 
 export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ children }) => {
-   const scrollRef = useRef<HTMLDivElement | null>(null);
+   const containerRef = useRef<any>(null);
+   const [containerSize, setContainerSize] = useState(0);
    const [pageHeight, setPageHeight] = useState<number>(0);
+   useEffect(() => {
+      const container = containerRef.current;
+      const body = document.body;
+      const size = container.getBoundingClientRect().height;
+      console.log({ size });
 
-   const resizePageHeight = useCallback((entries: ResizeObserverEntry[]) => {
-      for (let entry of entries) {
-         setPageHeight(entry.contentRect.height);
-      }
+      // Set ukuran body untuk menjaga scrollbar
+      body.style.height = `${size}px`;
+      setContainerSize(size);
    }, []);
 
    useLayoutEffect(() => {
-      const resizeObserver = new ResizeObserver((entries) => resizePageHeight(entries));
-      if (scrollRef.current) {
-         console.log({ first: scrollRef.current });
-         resizeObserver.observe(scrollRef.current);
-      }
-      return () => resizeObserver.disconnect();
-   }, [scrollRef, resizePageHeight]);
+      const container = containerRef.current;
+      const observer = new ResizeObserver((entries) => {
+         for (const entry of entries) {
+            if (Array.isArray(entry.contentBoxSize)) {
+               setContainerSize(entry.contentRect.height);
+            } else {
+               setContainerSize(entry.contentRect.height);
+            }
+         }
+      });
+
+      observer.observe(container);
+
+      return () => observer.disconnect();
+   }, [containerRef]);
 
    const { scrollY, scrollYProgress } = useScroll({
-      target: scrollRef,
+      target: containerRef,
       offset: ["start end", "end end"],
    });
 
-   const transform = useTransform(scrollY, [0, pageHeight], [0, -pageHeight]);
+   const transform = useTransform(scrollYProgress, [0, containerSize], [0, -containerSize]);
    const physics = { damping: 15, mass: 0.27, stiffness: 55 };
    const spring = useSpring(transform, physics);
    return (
       <SmoothScrollContext.Provider value={{ scrollYProgress }}>
-         <motion.div ref={scrollRef} style={{ y: spring }} className="max-h-max">
+         <motion.div ref={containerRef} style={{ y: spring }}>
             {children}
          </motion.div>
          {/* <div style={{ height: pageHeight }} /> */}

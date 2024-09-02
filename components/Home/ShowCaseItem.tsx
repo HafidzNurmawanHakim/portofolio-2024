@@ -7,7 +7,8 @@ import { Button } from "@nextui-org/button";
 import { GithubIcon, LinkIcon, LockIcon } from "../icons";
 import Link from "next/link";
 import Slide from "../Slide";
-import { fontMono } from "@/config/fonts";
+import { fontMono, fontSora } from "@/config/fonts";
+import { useResponsive } from "@/utils/hooks/useResponsive";
 
 interface TechStackItem {
    desc: string;
@@ -47,25 +48,33 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
    gitLink,
    webLink,
 }) => {
+   const isMobile = useResponsive("xs");
+
    const outputRight = useTransform(scrollYProgress, inputRange, outputRangeRight);
    const outputLeft = useTransform(scrollYProgress, inputRange, outputRangeLeft);
 
    return (
       <div
          className={clsx(
-            "w-full flex flex-col h-full pb-40 justify-center",
+            "w-full flex flex-col lg:pb-40 justify-center max-h-[1300px] lg:max-h-inherit",
             rtl ? "md:flex-row-reverse" : "md:flex-row"
          )}
       >
-         <Slide className="w-full md:w-1/2 py-40" delay={delay} direction={rtl ? "right" : "left"}>
+         <Slide
+            className="w-full md:w-1/2 py-20 lg:py-40 "
+            delay={delay}
+            direction={rtl ? "right" : "left"}
+         >
             <motion.div
                transition={{ ease: "easeInOut", type: "inertia" }}
                style={{ translateX: outputLeft }}
             >
-               <article className="px-10">
-                  <h2 className={clsx("font-sora", "text-2xl")}>{title}</h2>
+               <article className="pl-2 lg:px-10 w-80 lg:w-full">
+                  <h2 className={clsx(fontSora.className, " lg:text-2xl")}>{title}</h2>
                   <div className="my-10">
-                     <p className={clsx(fontMono.className, "text-left")}>{description}</p>
+                     <p className={clsx(fontMono.className, "text-tiny md:text-base text-left")}>
+                        {description}
+                     </p>
 
                      <div className="flex mt-4 items-center gap-4">
                         <label>Status:</label>
@@ -83,6 +92,7 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
                      <div className="flex gap-4 flex-wrap mt-20">
                         {techStack.map((item) => (
                            <Chip
+                              size={isMobile ? "sm" : "md"}
                               key={item.desc}
                               className="px-3 bg-background-900"
                               startContent={
@@ -139,14 +149,14 @@ const ShowCaseItem: React.FC<FeatureSectionProps> = ({
             </motion.div>
          </Slide>
          <Slide
-            className="relative mt-20 h-[960px] w-full pointer-events-none"
+            className="relative lg:mt-20 h-[960px] w-full pointer-events-none"
             delay={delay + 0.5}
             direction={rtl ? "right" : "left"}
          >
             <motion.div
                transition={{ ease: "easeInOut", type: "inertia", delay }}
                style={{ translateX: outputRight }}
-               className="relative mt-20 h-[960px] w-full"
+               className="relative h-[480px] lg:mt-20 lg:h-[960px] w-full"
             >
                <Image
                   src={imageUrl}

@@ -9,7 +9,7 @@ import { fontFira } from "@/config/fonts";
 
 function AboutSection() {
    return (
-      <Container className="">
+      <Container id="about" className="">
          <div className="absolute top-0 left-0 mt-[4.5rem] right-0 bottom-0 bg-gradient-to-t from-background from-10% via-transparent via-90% z-30"></div>
          <div className="flex left-0 z-10 absolute gap-10 top-0 mt-[4.5rem]">
             <svg
@@ -70,8 +70,8 @@ function AboutSection() {
             <GradientText colors={["from-sky-500 from-30%", "to-emerald-500 to-90%"]}>
                About Me
             </GradientText>
-            <section className="max-w-6xl mt-20 mx-auto p-10">
-               <div className="grid grid-cols-2 grid-rows-2 gap-4">
+            <section className="max-w-6xl mt-6 lg:mt-20 mx-auto p-10">
+               <div className="flex flex-col gap-4 lg:grid grid-cols-2 grid-rows-2 gap-4">
                   <div className="row-span-2">
                      <Image
                         src={"/assets/images/me.webp"}

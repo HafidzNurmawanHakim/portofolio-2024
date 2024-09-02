@@ -11,7 +11,7 @@ const Container = forwardRef<HTMLDivElement, ContainerProps>(({ children, classN
    return (
       <section
          id={id}
-         className="min-h-screen -mt-[73px] pt-32 md:pt-40 text-center max-w-screen overflow-hidden relative"
+         className="-mt-[73px] pt-32 md:pt-40 text-center min-h-screen max-w-screen overflow-hidden relative"
       >
          <div ref={ref} className={clsx("container mx-auto", className)}>
             {children}

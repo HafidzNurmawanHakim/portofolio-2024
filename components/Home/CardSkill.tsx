@@ -7,6 +7,7 @@ import clsx from "clsx";
 import { fontFira, fontSora } from "@/config/fonts";
 import { Chip } from "@nextui-org/chip";
 import Image from "next/image";
+import { useResponsive } from "@/utils/hooks/useResponsive";
 
 const data = [
    {
@@ -72,6 +73,8 @@ const data = [
 ];
 
 function CardSkill() {
+   const isMobile = useResponsive("xs");
+
    const [mousePosition, setMousePosition] = useState({
       x: 0,
       y: 0,
@@ -125,14 +128,16 @@ function CardSkill() {
             }}
          />
          <div className="absolute z-20 w-full h-full top-0 left-0  bg-grid pointer-events-none"></div>
-         <CardHeader className={clsx(fontFira.className, "justify-center text-xl gap-4 py-6")}>
-            <MessageCodeIcon size={32} /> Technologies I love to build with
+         <CardHeader
+            className={clsx(fontFira.className, "justify-center text-sm lg:text-xl gap-4 py-6")}
+         >
+            <MessageCodeIcon size={isMobile ? 24 : 32} /> Technologies I love to build with
          </CardHeader>
-         <CardBody className={clsx("px-10  text-gray-400 bg-default shadow-lg")}>
-            <div className="flex flex-wrap gap-4 text-xl flex-row">
-               {" "}
+         <CardBody className={clsx("px-4 lg:px-10  text-gray-400 bg-default shadow-lg")}>
+            <div className="flex flex-wrap gap-2 lg:gap-4 text-xl flex-row">
                {data.map((item) => (
                   <Chip
+                     size={isMobile ? "sm" : "md"}
                      key={item.desc}
                      className="px-3 bg-background"
                      startContent={

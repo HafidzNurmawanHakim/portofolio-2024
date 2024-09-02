@@ -1,163 +1,30 @@
 import clsx from "clsx";
 import Container from "../Container";
 import Slide from "../Slide";
-import { fontFira, fontMono, fontSora } from "@/config/fonts";
+import { fontFira } from "@/config/fonts";
 import GradientText from "../lib/GradientText";
-import Image from "next/image";
-import { useRef } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
-import { useSmoothScroll } from "../SmoothScroll";
-import { Chip } from "@nextui-org/chip";
-import { Button } from "@nextui-org/button";
-import { GithubIcon, LockIcon } from "../icons";
-import ShowCaseItem from "./ShowCaseItem";
 
-const ShowCaseItems = {
-   coffeePod: {
-      title: "Coffee Pod",
-      description: `Coffee Pod is an intuitive platform that streamlines coffee shop and food
-                           court management. It allows owners to easily update menus, manage hours,
-                           and communicate with customers, all from one interface. By enhancing
-                           online visibility and simplifying operations, Coffee Pod helps businesses
-                           focus on delivering exceptional service and optimizing daily tasks.`,
-      status: "Under Development",
-      privateProject: true,
-      gitLink: "",
-      webLink: "",
-      imageProject: "/assets/images/coffee-pod_lp.png",
-      techStack: [
-         {
-            image: "/assets/images/typescript.png",
-            desc: "Typescript",
-         },
-         {
-            image: "/assets/images/react.png",
-            desc: "React",
-         },
-         {
-            image: "assets/svg/next.svg",
-            desc: "Next",
-         },
-         {
-            image: "/assets/images/css.png",
-            desc: "CSS",
-         },
-         {
-            image: "assets/svg/sass.svg",
-            desc: "Sass",
-         },
-         {
-            image: "/assets/images/tailwind.png",
-            desc: "Tailwind",
-         },
-         {
-            image: "/assets/images/express.png",
-            desc: "Express",
-         },
-         {
-            image: "/assets/images/nestjs.png",
-            desc: "Nest Js",
-         },
-      ],
-   },
-   nevermind: {
-      title: "Nevermind",
-      description: `Nevermind is a platform that highlights and supports my freelance work as a fullstack engineer on Upwork. I offer a range of development services, from responsive web apps to robust APIs, reflecting my commitment to excellence and innovation.`,
-      status: "Production",
-      privateProject: true,
-      gitLink: "",
-      webLink: "https://nevermind.id",
-      imageProject: "/assets/images/nevermind_lp.png",
-      techStack: [
-         {
-            image: "/assets/images/typescript.png",
-            desc: "Typescript",
-         },
-         {
-            image: "/assets/images/react.png",
-            desc: "React",
-         },
-         {
-            image: "assets/svg/next.svg",
-            desc: "Next",
-         },
-         {
-            image: "/assets/images/css.png",
-            desc: "CSS",
-         },
-         {
-            image: "assets/svg/sass.svg",
-            desc: "Sass",
-         },
-         {
-            image: "/assets/images/tailwind.png",
-            desc: "Tailwind",
-         },
-         {
-            image: "/assets/images/express.png",
-            desc: "Express",
-         },
-         {
-            image: "/assets/images/nestjs.png",
-            desc: "Nest Js",
-         },
-      ],
-   },
-   portofolio: {
-      title: "Hafidz-Portofolio",
-      description: `My latest portfolio is built using TypeScript, Next.js, Tailwind CSS and Next UI. The site was designed with a focus on performance and aesthetics, featuring smooth animations using Framer Motion for a more dynamic user experience. This project reflects my expertise in modern front-end development and includes a showcase of some of my best projects.`,
-      status: "Production",
-      privateProject: false,
-      gitLink: "https://github.com/HafidzNurmawanHakim/portofolio-2024",
-      webLink: "https://hafidznurmawan-dev.my.id",
-      imageProject: "/assets/images/hafidznurmawan.png",
-      techStack: [
-         {
-            image: "/assets/images/typescript.png",
-            desc: "Typescript",
-         },
-         {
-            image: "/assets/images/react.png",
-            desc: "React",
-         },
-         {
-            image: "assets/svg/next.svg",
-            desc: "Next",
-         },
-         {
-            image: "/assets/images/css.png",
-            desc: "CSS",
-         },
-         {
-            image: "assets/svg/sass.svg",
-            desc: "Sass",
-         },
-         {
-            image: "/assets/images/tailwind.png",
-            desc: "Tailwind",
-         },
-         {
-            image: "/assets/svg/framer-motion.svg",
-            desc: "Framer Motion",
-         },
-      ],
-   },
-};
+import { useSmoothScroll } from "../SmoothScroll";
+
+import ShowCaseItem from "./ShowCaseItem";
+import { useResponsive } from "@/utils/hooks/useResponsive";
+import { ShowCaseItems } from "@/config/site";
 
 function ShowCase() {
    const { scrollYProgress } = useSmoothScroll();
+   const isMobile = useResponsive("xs");
 
    return (
-      <Container className="max-w-full">
+      <Container id="project" className="max-w-full">
          <Slide delay={0.5} className="mt-[4.5rem]">
-            <div className="my-20">
+            <div className="lg:my-20">
                <h3 className={clsx(fontFira.className, "text-xl mb-4")}>Bab II</h3>
                <GradientText colors={["from-sky-500 from-30%", "to-emerald-500 to-90% "]}>
                   Show Case
                </GradientText>
             </div>
          </Slide>
-         <div className="flex flex-col gap-20">
+         <div className="flex flex-col lg:gap-20">
             <ShowCaseItem
                imageUrl={ShowCaseItems.coffeePod.imageProject}
                status={ShowCaseItems.coffeePod.status}
@@ -166,7 +33,7 @@ function ShowCase() {
                techStack={ShowCaseItems.coffeePod.techStack}
                scrollYProgress={scrollYProgress}
                outputRangeLeft={["50%", "0%"]}
-               outputRangeRight={["0%", "50%"]}
+               outputRangeRight={isMobile ? ["0%", "20%"] : ["0%", "50%"]}
                inputRange={[1, 0]}
                gitLink={ShowCaseItems.coffeePod.gitLink}
                webLink={ShowCaseItems.coffeePod.webLink}
@@ -180,8 +47,8 @@ function ShowCase() {
                techStack={ShowCaseItems.nevermind.techStack}
                scrollYProgress={scrollYProgress}
                delay={1}
-               outputRangeLeft={["0%", "-80%"]}
-               outputRangeRight={["-80%", "0%"]}
+               outputRangeLeft={isMobile ? ["0%", "20%"] : ["0%", "-80%"]}
+               outputRangeRight={isMobile ? ["-20%", "0%"] : ["-80%", "0%"]}
                inputRange={[0, 1]}
                rtl
                gitLink={ShowCaseItems.nevermind.gitLink}
@@ -195,8 +62,8 @@ function ShowCase() {
                description={ShowCaseItems.portofolio.description}
                techStack={ShowCaseItems.portofolio.techStack}
                scrollYProgress={scrollYProgress}
-               outputRangeLeft={["50%", "0%"]}
-               outputRangeRight={["0%", "80%"]}
+               outputRangeLeft={isMobile ? ["20%", "0%"] : ["50%", "0%"]}
+               outputRangeRight={isMobile ? ["0%", "20%"] : ["0%", "80%"]}
                inputRange={[1, 0]}
                gitLink={ShowCaseItems.portofolio.gitLink}
                webLink={ShowCaseItems.portofolio.webLink}
