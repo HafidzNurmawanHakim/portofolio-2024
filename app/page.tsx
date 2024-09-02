@@ -8,13 +8,13 @@ import MarqueeSection from "@/components/Home/MarqueeSection";
 import ContactSection from "@/components/Home/ContactSection";
 
 export default function Home() {
-   return (
-      <>
-         <HeroSection />
-         <AboutSection />
-         <ShowCase />
-         <MarqueeSection />
-         <ContactSection />
-      </>
-   );
+  return (
+    <>
+      <HeroSection />
+      <AboutSection />
+      <ShowCase />
+      <MarqueeSection />
+      <ContactSection />
+    </>
+  );
 }

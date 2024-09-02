@@ -1,6 +1,9 @@
 import { useEffect, useLayoutEffect } from "react";
-import { MotionValue, useMotionValue } from "framer-motion";
-import { ScrollState, Tracker } from "@14islands/r3f-scroll-rig/dist/src/hooks/useTrackerTypes";
+import { useMotionValue } from "framer-motion";
+import {
+  ScrollState,
+  Tracker,
+} from "@14islands/r3f-scroll-rig/dist/src/hooks/useTrackerTypes";
 import { useScrollbar } from "@14islands/r3f-scroll-rig";
 
 /**
@@ -9,21 +12,22 @@ import { useScrollbar } from "@14islands/r3f-scroll-rig";
  * @param {string} prop scrollState prop to bind
  */
 function useTrackerMotionValue(tracker: Tracker, prop = "progress") {
-   const progress = useMotionValue(0);
-   const { onScroll } = useScrollbar();
+  const progress = useMotionValue(0);
+  const { onScroll } = useScrollbar();
 
-   useLayoutEffect(() => {
-      // set initial progress
+  useLayoutEffect(() => {
+    // set initial progress
+    progress.set(tracker.scrollState[prop as keyof ScrollState] as number);
+  }, [progress, tracker, prop]);
+
+  useEffect(() => {
+    // update progress on scroll
+    return onScroll(() => {
       progress.set(tracker.scrollState[prop as keyof ScrollState] as number);
-   }, [progress, tracker, prop]);
+    });
+  }, [tracker, progress, onScroll, prop]);
 
-   useEffect(() => {
-      // update progress on scroll
-      return onScroll(() => {
-         progress.set(tracker.scrollState[prop as keyof ScrollState] as number);
-      });
-   }, [tracker, progress, onScroll, prop]);
-   return progress;
+  return progress;
 }
 
 export default useTrackerMotionValue;
