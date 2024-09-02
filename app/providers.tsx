@@ -8,22 +8,25 @@ import { ThemeProviderProps } from "next-themes/dist/types";
 import { Toaster } from "react-hot-toast";
 
 import { SmoothScrollProvider } from "@/components/SmoothScroll";
+import { domAnimation, LazyMotion } from "framer-motion";
 
 export interface ProvidersProps {
-  children: React.ReactNode;
-  themeProps?: ThemeProviderProps;
+   children: React.ReactNode;
+   themeProps?: ThemeProviderProps;
 }
 
 export function Providers({ children, themeProps }: ProvidersProps) {
-  const router = useRouter();
+   const router = useRouter();
 
-  return (
-    <NextUIProvider navigate={router.push}>
-      <NextThemesProvider {...themeProps}>
-        <SmoothScrollProvider>{children}</SmoothScrollProvider>
+   return (
+      <NextUIProvider navigate={router.push}>
+         <NextThemesProvider {...themeProps}>
+            <LazyMotion features={domAnimation}>
+               <SmoothScrollProvider>{children}</SmoothScrollProvider>
+            </LazyMotion>
 
-        <Toaster />
-      </NextThemesProvider>
-    </NextUIProvider>
-  );
+            <Toaster />
+         </NextThemesProvider>
+      </NextUIProvider>
+   );
 }
