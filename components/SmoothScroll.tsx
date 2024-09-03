@@ -53,10 +53,10 @@ export const SmoothScrollProvider: React.FC<SmoothScrollProviderProps> = ({ chil
 
    return (
       <SmoothScrollContext.Provider value={{ scrollYProgress }}>
-         <motion.div ref={containerRef} style={{ y: spring }} className="scroll-container">
-            {children}
-         </motion.div>
-         <div style={{ height: containerSize }} />
+         {/* <motion.div ref={containerRef} style={{ y: spring }} className="scroll-container"> */}
+         {children}
+         {/* </motion.div> */}
+         {/* <div style={{ height: containerSize }} /> */}
       </SmoothScrollContext.Provider>
    );
 };

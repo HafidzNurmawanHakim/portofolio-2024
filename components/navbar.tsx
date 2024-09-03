@@ -22,6 +22,7 @@ import { siteConfig } from "@/config/site";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { GithubIcon, HeartFilledIcon, SearchIcon } from "@/components/icons";
 import { fontFira } from "@/config/fonts";
+import { CustomLink } from "./lib/CustomLink";
 
 export const Navbar = () => {
    const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -79,6 +80,7 @@ export const Navbar = () => {
                         )}
                         color="foreground"
                         href={item.href}
+                        scroll={true}
                      >
                         {item.label}
                      </NextLink>

@@ -26,7 +26,6 @@ export function Providers({ children, themeProps }: ProvidersProps) {
             <LazyMotion features={domAnimation}>
                <SmoothScrollProvider>{children}</SmoothScrollProvider>
             </LazyMotion>
-
             <Toaster />
          </NextThemesProvider>
       </NextUIProvider>
