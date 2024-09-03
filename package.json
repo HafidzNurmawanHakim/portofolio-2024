@@ -9,7 +9,7 @@
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
-		"@14islands/r3f-scroll-rig": "^8.13.2",
+		"@14islands/r3f-scroll-rig": "8.12.3",
 		"@emailjs/browser": "^4.4.1",
 		"@nextui-org/button": "2.0.37",
 		"@nextui-org/card": "^2.0.33",
@@ -36,7 +36,8 @@
 		"react-dom": "18.3.1",
 		"react-hot-toast": "^2.4.1",
 		"react-type-animation": "^3.2.0",
-		"resize-observer-polyfill": "^1.5.1"
+		"resize-observer-polyfill": "^1.5.1",
+		"scroller-motion": "^1.2.3"
 	},
 	"devDependencies": {
 		"@types/node": "20.5.7",

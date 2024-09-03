@@ -6,13 +6,13 @@ html {
    scroll-behavior: smooth;
 }
 
-body {
+/* body {
    overscroll-behavior-y: none;
    user-select: none;
    text-rendering: optimizeLegibility;
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
-}
+} */
 
 @layer {
    .custom-blur {

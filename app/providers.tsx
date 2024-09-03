@@ -9,6 +9,8 @@ import { Toaster } from "react-hot-toast";
 
 import { SmoothScrollProvider } from "@/components/SmoothScroll";
 import { domAnimation, LazyMotion } from "framer-motion";
+import { ScrollerMotion } from "scroller-motion";
+import { SmoothScrollbar } from "@14islands/r3f-scroll-rig";
 
 export interface ProvidersProps {
    children: React.ReactNode;

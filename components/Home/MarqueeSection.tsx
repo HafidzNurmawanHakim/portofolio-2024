@@ -5,10 +5,11 @@ import Image from "next/image";
 import Marquee from "../lib/Marquee";
 
 import { techData } from "@/config/site";
+import { isChromeOrFirefox } from "@/utils/helper";
 
 function MarqueeSection() {
    return (
-      <SmoothScrollbar>
+      <SmoothScrollbar enabled={false}>
          {(bind) => (
             <div {...bind}>
                <Marquee reverse>
