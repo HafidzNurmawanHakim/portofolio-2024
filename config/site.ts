@@ -61,7 +61,7 @@ export const ShowCaseItems = {
       status: "Under Development",
       privateProject: true,
       gitLink: "",
-      webLink: "",
+      webLink: "https://coffeepod-dev.nevermind.id",
       imageProject: "/assets/images/coffee-pod_lp.png",
       techStack: [
          {
